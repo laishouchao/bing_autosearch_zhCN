@@ -1,5 +1,5 @@
-# Bing Auto Search for Microsoft Rewards (bing_autosearch)
+# Bing 自动搜索赚取 Microsoft 奖励积分 (bing_autosearch)
 
-Browser-based Bing auto search bot to earn Microsoft Rewards points.
+基于浏览器的 Bing 自动搜索机器人，用于赚取 Microsoft 奖励积分。
 
-https://gerisonsabino.com/bing_autosearch
+https://laishouchao.github.io/bing_autosearch_zhCN/
