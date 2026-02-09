@@ -166,7 +166,7 @@
             settings: {
                 toString: () => {
                     try {
-                        return `${BING_AUTOSEARCH.elements.select.limit.options[BING_AUTOSEARCH.elements.select.limit.selectedIndex].text}, ${BING_AUTOSEARCH.elements.select.interval.options[BING_AUTOSEARCH.elements.select.interval.selectedIndex].text} interval and Multi-tab Mode ${BING_AUTOSEARCH.elements.select.multitab.options[BING_AUTOSEARCH.elements.select.multitab.selectedIndex].text}`;
+                        return `${BING_AUTOSEARCH.elements.select.limit.options[BING_AUTOSEARCH.elements.select.limit.selectedIndex].text}, ${BING_AUTOSEARCH.elements.select.interval.options[BING_AUTOSEARCH.elements.select.interval.selectedIndex].text} ${I18n.translations[I18n.currentLanguage]?.interval || 'interval'} and ${I18n.translations[I18n.currentLanguage]?.multitabMode || 'Multi-tab Mode'} ${BING_AUTOSEARCH.elements.select.multitab.options[BING_AUTOSEARCH.elements.select.multitab.selectedIndex].text}`;
                     }
                     catch (e) {
                         return `Oops! There was an error loading the settings, please clear your browser cookies and reload the page to continue`;
@@ -208,17 +208,17 @@
                     let complete = (BING_AUTOSEARCH.search.engine.timer.complete - now);
 
                     if (BING_AUTOSEARCH.search.interval === 9999) {
-                        BING_AUTOSEARCH.elements.div.timer.innerHTML = `<strong>Auto Search Running:</strong> 10~60 seconds (random) auto search interval active.`;
+                        BING_AUTOSEARCH.elements.div.timer.innerHTML = `<strong>${I18n.translations[I18n.currentLanguage]?.autoSearchRunning || 'Auto Search Running:'}</strong> ${I18n.translations[I18n.currentLanguage]?.randomIntervalActive || '10~60 seconds (random) auto search interval active.'}`;
                     }
                     else if (complete >= 0) {
-                        BING_AUTOSEARCH.elements.div.timer.innerHTML = `<strong>Auto Search Running:</strong> ${next >= 0 ? `New auto search in ${BING_AUTOSEARCH.search.engine.timer.toClockFormat(next)}` : "Finishing last auto search"}, estimated time to complete ${BING_AUTOSEARCH.search.engine.timer.toClockFormat(complete, true)}.`;
+                        BING_AUTOSEARCH.elements.div.timer.innerHTML = `<strong>${I18n.translations[I18n.currentLanguage]?.autoSearchRunning || 'Auto Search Running:'}</strong> ${next >= 0 ? `${I18n.translations[I18n.currentLanguage]?.newSearchIn || 'New auto search in'} ${BING_AUTOSEARCH.search.engine.timer.toClockFormat(next)}` : I18n.translations[I18n.currentLanguage]?.finishingSearch || "Finishing last auto search"}, ${I18n.translations[I18n.currentLanguage]?.estimatedComplete || 'estimated time to complete'} ${BING_AUTOSEARCH.search.engine.timer.toClockFormat(complete, true)}.`;
 
                         setTimeout(() => {
                             BING_AUTOSEARCH.search.engine.timer.run();
                         }, 1000);
                     }
                     else {
-                        BING_AUTOSEARCH.elements.div.timer.innerHTML = `<strong>Auto Search Running:</strong> Stopping the auto search process...`;
+                        BING_AUTOSEARCH.elements.div.timer.innerHTML = `<strong>${I18n.translations[I18n.currentLanguage]?.autoSearchRunning || 'Auto Search Running:'}</strong> ${I18n.translations[I18n.currentLanguage]?.stoppingSearch || 'Stopping the auto search process...'}`;
                     }
                 }
             }
@@ -305,7 +305,7 @@
             location.reload();
         });
 
-        BING_AUTOSEARCH.elements.div.settings.innerHTML = `<strong>Auto Search Settings:</strong> ${BING_AUTOSEARCH.search.engine.settings.toString()}.`;
+        BING_AUTOSEARCH.elements.div.settings.innerHTML = `<strong>${I18n.translations[I18n.currentLanguage]?.autoSearchSettings || 'Auto Search Settings:'}</strong> ${BING_AUTOSEARCH.search.engine.settings.toString()}.`;
 
         if ("wakeLock" in navigator) {
             BING_AUTOSEARCH.search.wakeLock.activate();
